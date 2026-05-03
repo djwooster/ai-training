@@ -14,36 +14,36 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-8">
         {/* Logo */}
         <Link
           href="/"
-          className="font-heading text-lg font-normal tracking-tight text-zinc-900 hover:text-zinc-700 transition-colors"
+          className="text-sm font-semibold tracking-tight text-foreground hover:text-foreground/80 transition-colors duration-150"
         >
           AI at Work
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
             >
               {l.label}
             </Link>
           ))}
           <Link
             href="/sign-in"
-            className="text-sm font-medium text-zinc-900 hover:text-zinc-700 transition-colors"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
           >
             Sign in
           </Link>
           <Link
             href="/#pricing"
-            className="rounded-md bg-sage px-4 py-2 text-sm font-medium text-sage-foreground hover:bg-sage-hover transition-colors"
+            className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors duration-150"
           >
             Get started
           </Link>
@@ -51,24 +51,28 @@ export function Nav() {
 
         {/* Mobile toggle */}
         <button
-          className="flex items-center justify-center rounded-md p-2 text-zinc-600 hover:text-zinc-900 md:hidden"
+          className="flex items-center justify-center rounded-md p-1.5 text-muted-foreground hover:text-foreground md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          {open ? <X size={20} /> : <Menu size={20} />}
+          {open ? (
+            <X size={20} strokeWidth={1.5} />
+          ) : (
+            <Menu size={20} strokeWidth={1.5} />
+          )}
         </button>
       </nav>
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-zinc-100 bg-white px-4 pb-6 pt-4 md:hidden">
+        <div className="border-t border-border bg-background px-4 pb-6 pt-4 md:hidden">
           <div className="flex flex-col gap-4">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="text-sm text-zinc-700 hover:text-zinc-900 transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
               >
                 {l.label}
               </Link>
@@ -76,14 +80,14 @@ export function Nav() {
             <Link
               href="/sign-in"
               onClick={() => setOpen(false)}
-              className="text-sm text-zinc-700 hover:text-zinc-900 transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
             >
               Sign in
             </Link>
             <Link
               href="/#pricing"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex rounded-md bg-sage px-4 py-2.5 text-sm font-medium text-sage-foreground hover:bg-sage-hover transition-colors"
+              className="mt-2 inline-flex rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background hover:bg-foreground/90 transition-colors duration-150"
             >
               Get started
             </Link>

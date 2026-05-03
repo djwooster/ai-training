@@ -1,7 +1,3 @@
-"use client"
-
-import { FadeIn } from "./fade-in"
-
 // TODO: Replace with customer-validated ROI data
 const metrics = [
   {
@@ -58,61 +54,62 @@ export function RoiBreakdown() {
   return (
     <>
       {/* Metrics */}
-      <section className="bg-white py-24 lg:py-32">
+      <section className="bg-background py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <FadeIn className="mb-14 max-w-xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
+          <div className="mb-14 max-w-xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
               The ROI case
             </p>
-            <h2 className="font-heading text-3xl tracking-tight text-zinc-900 sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               The numbers that move budgets.
             </h2>
-            <p className="mt-4 text-zinc-500 leading-relaxed">
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Real outcomes from teams that completed AI at Work. Use these in
               your business case — or ask us for the full dataset.
             </p>
-          </FadeIn>
+          </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {metrics.map((m, i) => (
-              <FadeIn key={m.label} delay={i * 0.07}>
-                <div className="flex flex-col gap-2">
-                  <p className="font-heading text-4xl leading-none tracking-tight text-zinc-900">
-                    {m.figure}
-                  </p>
-                  <p className="text-sm font-medium text-zinc-700">{m.label}</p>
-                  <p className="text-xs leading-relaxed text-zinc-400">{m.context}</p>
-                </div>
-              </FadeIn>
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {metrics.map((m) => (
+              <div key={m.label} className="flex flex-col gap-1.5">
+                <p className="font-mono text-4xl font-semibold leading-none tracking-tight text-foreground">
+                  {m.figure}
+                </p>
+                <p className="text-sm font-medium text-foreground">{m.label}</p>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  {m.context}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Enterprise features grid */}
-      <section className="bg-zinc-50 py-24 lg:py-32">
+      <section className="bg-muted py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <FadeIn className="mb-14 max-w-xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
+          <div className="mb-14 max-w-xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
               Enterprise features
             </p>
-            <h2 className="font-heading text-3xl tracking-tight text-zinc-900 sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               Built for IT and L&D requirements.
             </h2>
-          </FadeIn>
+          </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {enterpriseFeatures.map((f, i) => (
-              <FadeIn key={f.title} delay={i * 0.06}>
-                <div className="rounded-xl border border-zinc-200 bg-white p-6">
-                  <h3 className="font-heading text-lg tracking-tight text-zinc-900">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-500">
-                    {f.body}
-                  </p>
-                </div>
-              </FadeIn>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {enterpriseFeatures.map((f) => (
+              <div
+                key={f.title}
+                className="rounded-xl border border-border bg-background p-6"
+              >
+                <h3 className="text-sm font-semibold tracking-tight text-foreground">
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {f.body}
+                </p>
+              </div>
             ))}
           </div>
         </div>

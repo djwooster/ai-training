@@ -5,6 +5,9 @@ import { Send, CheckCircle } from "lucide-react"
 
 type FormState = "idle" | "loading" | "success" | "error"
 
+const inputClass =
+  "rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 transition duration-150"
+
 // TODO: Add form validation library (e.g. zod + react-hook-form) for production
 export function ContactForm() {
   const [state, setState] = useState<FormState>("idle")
@@ -31,11 +34,11 @@ export function ContactForm() {
   if (state === "success") {
     return (
       <div className="flex flex-col items-center gap-4 py-12 text-center">
-        <CheckCircle size={40} className="text-sage" strokeWidth={1.5} />
-        <h3 className="font-heading text-2xl tracking-tight text-zinc-900">
+        <CheckCircle size={32} strokeWidth={1.5} className="text-success" />
+        <h3 className="text-xl font-semibold tracking-tight text-foreground">
           Message received.
         </h3>
-        <p className="max-w-sm text-sm text-zinc-500">
+        <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
           Someone from our team will be in touch within one business day.
           {/* TODO: Set accurate response SLA */}
         </p>
@@ -44,11 +47,11 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-5">
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="grid gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="firstName" className="text-xs font-medium text-zinc-700">
-            First name <span className="text-red-400">*</span>
+          <label htmlFor="firstName" className="text-xs font-medium text-foreground">
+            First name <span className="text-error">*</span>
           </label>
           <input
             id="firstName"
@@ -56,12 +59,12 @@ export function ContactForm() {
             type="text"
             required
             placeholder="Ada"
-            className="rounded-md border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition"
+            className={inputClass}
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="lastName" className="text-xs font-medium text-zinc-700">
-            Last name <span className="text-red-400">*</span>
+          <label htmlFor="lastName" className="text-xs font-medium text-foreground">
+            Last name <span className="text-error">*</span>
           </label>
           <input
             id="lastName"
@@ -69,14 +72,14 @@ export function ContactForm() {
             type="text"
             required
             placeholder="Lovelace"
-            className="rounded-md border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition"
+            className={inputClass}
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="email" className="text-xs font-medium text-zinc-700">
-          Work email <span className="text-red-400">*</span>
+        <label htmlFor="email" className="text-xs font-medium text-foreground">
+          Work email <span className="text-error">*</span>
         </label>
         <input
           id="email"
@@ -84,13 +87,13 @@ export function ContactForm() {
           type="email"
           required
           placeholder="ada@company.com"
-          className="rounded-md border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition"
+          className={inputClass}
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="company" className="text-xs font-medium text-zinc-700">
-          Company <span className="text-red-400">*</span>
+        <label htmlFor="company" className="text-xs font-medium text-foreground">
+          Company <span className="text-error">*</span>
         </label>
         <input
           id="company"
@@ -98,20 +101,20 @@ export function ContactForm() {
           type="text"
           required
           placeholder="Acme Corp"
-          className="rounded-md border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition"
+          className={inputClass}
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="teamSize" className="text-xs font-medium text-zinc-700">
-          Team size <span className="text-red-400">*</span>
+        <label htmlFor="teamSize" className="text-xs font-medium text-foreground">
+          Team size <span className="text-error">*</span>
         </label>
         <select
           id="teamSize"
           name="teamSize"
           required
           defaultValue=""
-          className="rounded-md border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition"
+          className={inputClass}
         >
           <option value="" disabled>
             Select team size
@@ -125,7 +128,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="text-xs font-medium text-zinc-700">
+        <label htmlFor="message" className="text-xs font-medium text-foreground">
           Message
         </label>
         <textarea
@@ -133,12 +136,12 @@ export function ContactForm() {
           name="message"
           rows={4}
           placeholder="Tell us about your team, timeline, or any questions you have."
-          className="rounded-md border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 transition resize-none"
+          className={`${inputClass} resize-none`}
         />
       </div>
 
       {state === "error" && (
-        <p className="text-sm text-red-500">
+        <p className="text-sm text-error">
           Something went wrong. Please try again or email us directly.
           {/* TODO: Add direct contact email */}
         </p>
@@ -147,13 +150,13 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state === "loading"}
-        className="inline-flex items-center justify-center gap-2 rounded-md bg-sage px-5 py-3 text-sm font-medium text-white hover:bg-sage-hover disabled:opacity-50 transition-colors"
+        className="inline-flex items-center justify-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:bg-foreground/90 disabled:opacity-50 transition-colors duration-150"
       >
         {state === "loading" ? (
           "Sending…"
         ) : (
           <>
-            <Send size={14} />
+            <Send size={14} strokeWidth={1.5} />
             Send message
           </>
         )}

@@ -6,7 +6,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion"
-import { FadeIn } from "./fade-in"
 
 // TODO: Review and finalize FAQ copy with legal / product
 const faqs = [
@@ -40,33 +39,31 @@ const faqs = [
 
 export function FaqSection() {
   return (
-    <section className="bg-white py-24 lg:py-32">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 lg:px-8">
-        <FadeIn className="mb-14">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
+        <div className="mb-14">
+          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
             FAQ
           </p>
-          <h2 className="font-heading text-3xl tracking-tight text-zinc-900 sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Common questions.
           </h2>
-        </FadeIn>
+        </div>
 
-        <FadeIn delay={0.08}>
-          <Accordion multiple={false}>
-            {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={String(i)}>
-                <AccordionTrigger className="py-5 text-base font-medium text-zinc-900 hover:no-underline">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="pb-1 text-sm leading-relaxed text-zinc-500">
-                    {faq.a}
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </FadeIn>
+        <Accordion multiple={false}>
+          {faqs.map((faq, i) => (
+            <AccordionItem key={i} value={String(i)}>
+              <AccordionTrigger className="py-5 text-sm font-medium text-foreground hover:no-underline">
+                {faq.q}
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="pb-1 text-sm leading-relaxed text-muted-foreground">
+                  {faq.a}
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   )

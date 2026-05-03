@@ -1,7 +1,6 @@
 "use client"
 
 import { Clock, TrendingDown, CheckCircle2 } from "lucide-react"
-import { FadeIn } from "./fade-in"
 
 // TODO: Update copy and numbers once internal data is confirmed
 const props = [
@@ -24,33 +23,34 @@ const props = [
 
 export function ValueProps() {
   return (
-    <section className="bg-white py-24 lg:py-32">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
-        <FadeIn className="mb-14 max-w-xl">
-          <h2 className="font-heading text-3xl tracking-tight text-zinc-900 sm:text-4xl">
+        <div className="mb-14 max-w-xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Why AI at Work pays for itself.
           </h2>
-          <p className="mt-4 text-zinc-500 leading-relaxed">
-            The ROI is not about AI doing your job. It is about your team{" "}
-            doing their job better, faster, and with less wasted effort.
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            The ROI is not about AI doing your job. It is about your team doing
+            their job better, faster, and with less wasted effort.
           </p>
-        </FadeIn>
+        </div>
 
-        <div className="grid gap-8 sm:grid-cols-3">
-          {props.map((p, i) => (
-            <FadeIn key={p.headline} delay={i * 0.08}>
-              <div className="group relative rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 hover:shadow-sm transition-all">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-sage-50 ring-1 ring-sage/20">
-                  <p.icon size={18} className="text-sage" strokeWidth={1.75} />
-                </div>
-                <h3 className="font-heading text-xl leading-snug tracking-tight text-zinc-900">
-                  {p.headline}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-500">
-                  {p.body}
-                </p>
+        <div className="grid gap-6 sm:grid-cols-3">
+          {props.map((p) => (
+            <div
+              key={p.headline}
+              className="rounded-xl border border-border bg-background p-6 hover:border-foreground/20 transition-colors duration-150"
+            >
+              <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-md border border-border bg-muted">
+                <p.icon size={16} strokeWidth={1.5} className="text-foreground" />
               </div>
-            </FadeIn>
+              <h3 className="text-base font-semibold tracking-tight text-foreground">
+                {p.headline}
+              </h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                {p.body}
+              </p>
+            </div>
           ))}
         </div>
       </div>

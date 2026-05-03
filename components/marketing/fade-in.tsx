@@ -1,31 +1,25 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 
 interface FadeInProps {
   children: React.ReactNode
   delay?: number
   className?: string
-  /** Use "up" (default) or "none" for opacity-only fade */
-  direction?: "up" | "none"
 }
 
-export function FadeIn({
-  children,
-  delay = 0,
-  className,
-  direction = "up",
-}: FadeInProps) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
-
+// Simple mount-time fade — intentionally not scroll-triggered.
+// Use only for above-the-fold hero content per motion spec.
+export function FadeIn({ children, delay = 0, className }: FadeInProps) {
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: direction === "up" ? 16 : 0 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.45,
+        ease: [0.22, 1, 0.36, 1] as const,
+        delay,
+      }}
       className={className}
     >
       {children}

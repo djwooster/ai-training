@@ -1,18 +1,17 @@
 import type { Metadata } from "next"
-import { Instrument_Serif, DM_Sans } from "next/font/google"
+import { Geist, Geist_Mono } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
-const instrumentSerif = Instrument_Serif({
-  weight: ["400"],
-  style: ["normal", "italic"],
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-instrument-serif",
+  variable: "--font-geist",
   display: "swap",
 })
 
-const dmSans = DM_Sans({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-geist-mono",
   display: "swap",
 })
 
@@ -28,9 +27,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
